@@ -1,28 +1,61 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <v-main>
+      <Home/>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Home from './components/Home.vue'
+
+import * as d3 from 'd3'
+import Data from "/Users/ammaraldhahyani/Desktop/thesis-fado/fado/public/Customers.json";
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Home
+  },
+  data() {
+    return {
+      
+      
+      
+    };
+  },
+  mounted() {
+    console.log("App loaded");
+    
+  },
+  methods: {
+ 
   }
-}
+  
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+
+main{
+  background: #fafafa;
+  
+}
+
+.v-btn__content{
+  white-space: normal;
+  flex: initial;
+  display: inline-block;
+}
+
+.activebtn{
+  background-color: rgb(59, 59, 206) !important;
+  color: #fff !important;
+}
+.fab-btn{
+  width: 100px !important;
+  height: 100px  !important;
+  margin-left: 19px;
+  margin-bottom: 30px;
 }
 </style>

@@ -210,7 +210,7 @@ export default {
       let senderInfo = this.keys(Data[sender])
       let receiverInfo = this.keys(Data[receiver])
 
-      let line = [sender + receiver, amount] + ',' + senderInfo + ',' + receiverInfo
+      let line = [sender , receiver , amount] + ',' + senderInfo + ',' + receiverInfo
 
       return line
     },

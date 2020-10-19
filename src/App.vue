@@ -9,7 +9,7 @@
 <script>
 import Home from './components/Home.vue'
 
-import * as d3 from 'd3'
+
 import Data from "/Users/ammaraldhahyani/Desktop/thesis-fado/fado/public/Customers.json";
 
 export default {

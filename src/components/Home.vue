@@ -113,7 +113,7 @@
 </template>
 
 <script>
-import * as d3 from 'd3'
+
 import Data from "/Users/ammaraldhahyani/Desktop/thesis-fado/fado/public/Customers.json";
 
 export default {
@@ -229,7 +229,7 @@ export default {
             this.printToken(newToken,'outflowTokens')
           }
         }
-      }, 200)
+      }, 300)
     },
     printToken(token, containerId){
       let newTokenDiv = document.createElement('div')

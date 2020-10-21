@@ -31,14 +31,16 @@
 
           <v-row no-gutters class="filters">
             <v-col sm="12" class="text-center mt-5 filters-buttons--holder">
-            
-              <v-btn elevation="2" :class="{ activebtn : activeBtn }" @click="setFilter('Q')">Expert System 1</v-btn>
-              <v-btn elevation="2">Expert System 2</v-btn>
-              <v-btn elevation="2">Expert System 3</v-btn>
-              <v-btn elevation="2">Expert System 4</v-btn>
-              <v-btn elevation="2">Expert System 5</v-btn>
-              <v-btn elevation="2">Expert System 6</v-btn>
-              <v-btn elevation="2">+</v-btn>
+              <v-btn-toggle v-model="toggle_exclusive"  multiple group color="#3b3bce" >
+                <v-btn elevation="2">Expert System 1</v-btn>
+                <v-btn elevation="2">Expert System 2</v-btn>
+                <v-btn elevation="2">Expert System 3</v-btn>
+                <v-btn elevation="2">Expert System 4</v-btn>
+                <v-btn elevation="2">Expert System 5</v-btn>
+                <v-btn elevation="2">Expert System 6</v-btn>
+                <v-btn elevation="2">+</v-btn>
+
+              </v-btn-toggle>
 
 
             </v-col>
@@ -89,25 +91,7 @@
     </v-container>
 
 
-    <v-snackbar
-      v-model="snackbar"
-      :timeout="timeout"
-       color="success"
-    >
-      <span v-if="activeBtn == true">Expert System 1 Activated</span>
-      <span v-else>Expert System 1 Disabled</span>
-
-      <template v-slot:action="{ attrs }">
-        <v-btn
-          color="white"
-          text
-          v-bind="attrs"
-          @click="snackbar = false"
-        >
-          Close
-        </v-btn>
-      </template>
-    </v-snackbar>
+ 
 
   </v-container>
 </template>
@@ -125,9 +109,14 @@ export default {
     activeBtn: false,
     snackbar: false,
     timeout: 2000,
+    toggle_exclusive: [],
+
 
   }),
+ 
   methods: {
+
+
 
     randomItem(items){
       return items[Math.floor(Math.random()*items.length)];
@@ -219,17 +208,18 @@ export default {
     generateToken(){
       setInterval(()=>{
         let newToken = this.generateTx()
+        let firstNum = 
         this.Tokens.push(newToken)
         this.printToken(newToken,'inflowTokens')
-        if(this.filter == null){
+        if(this.toggle_exclusive[0] == null){
           this.printToken(newToken,'outflowTokens')
         }
         else{
-          if(newToken.includes(this.filter)){
+          if(this.setFilter(newToken) == true){
             this.printToken(newToken,'outflowTokens')
           }
         }
-      }, 300)
+      }, 200)
     },
     printToken(token, containerId){
       let newTokenDiv = document.createElement('div')
@@ -239,19 +229,26 @@ export default {
       tokenContianer.insertBefore(newTokenDiv, tokenContianer.childNodes[0])
     },
     
-    setFilter(value){
-      if(this.filter == value){
-        this.filter = null
-      }else{
-        this.filter = value
+
+    setFilter(oneToken){
+      
+      let sys = this.toggle_exclusive
+      let l = sys.length
+      for(let i = 0; i < l ; i++){
+        if(oneToken[sys[i]] != 1 & sys[i] != 6){
+          return false
+
+        }
       }
-      this.activeBtn = !this.activeBtn
-      this.snackbar = true
+      return true
     }
+
   },
   mounted () {
     console.log(this.generateTx())
     this.generateToken() 
+    console.log(this.setFilter())
+    
    
   }
 }

@@ -1,100 +1,7 @@
-<template>
-  <v-container fluid pa-0>
-
-    <v-row no-gutters class="my-3">
-      <v-col cols="12" sm="12" class="text-center">
-        <h1>FADO</h1>
-      </v-col>
-    </v-row>
-
-    <v-row no-gutters>
-      <v-col cols="12" sm="12" class="navbar">
-        <ul>
-          <li class="ml-5"><a href="#">File</a></li>
-          <li><a href="#">Setup</a></li>
-          <li><a href="#">Extra</a></li>
-          <li><a href="#">Help</a></li>
-        </ul>
-      </v-col>
-    </v-row>
-
-    <v-container>
-      <v-row no-gutters>
-        <v-col sm="12" md="5" class="text-center mt-5">
-          <h2>Inflow</h2>
-          <div id="inflow" class="mt-3 py-3">
-            <div id="inflowTokens">
-            </div>
-          </div>
-        </v-col>
-        <v-col sm="12" md="7">
-
-          <v-row no-gutters class="filters">
-            <v-col sm="12" class="text-center mt-5 filters-buttons--holder">
-              <v-btn-toggle v-model="toggle_exclusive"  multiple group color="#3b3bce" >
-                <v-btn elevation="2">Expert System 1</v-btn>
-                <v-btn elevation="2">Expert System 2</v-btn>
-                <v-btn elevation="2">Expert System 3</v-btn>
-                <v-btn elevation="2">Expert System 4</v-btn>
-                <v-btn elevation="2">Expert System 5</v-btn>
-                <v-btn elevation="2">Expert System 6</v-btn>
-                <v-btn elevation="2">+</v-btn>
-
-              </v-btn-toggle>
 
 
-            </v-col>
-          </v-row>
-
-          <v-row no-gutters justify="center" align="center" class="fado-filters">
-             <v-col sm="3" class="text-center">
-               <v-btn elevation="2">Labeling</v-btn>
-             </v-col>
-             <v-col sm="3" class="text-center">
-
-               <v-row no-gutters class="mt-5" >
-                 <v-col sm="3" class="text-center">
-                  <v-btn elevation="2" dark color="rgb(59, 59, 206)" class="fab-btn" large fab>FADO</v-btn>
-                </v-col>
-               </v-row>
-
-               <v-row no-gutters class="ml-5">
-                 <v-col sm="3" class="text-center">
-                  <v-btn elevation="2">outstream</v-btn>
-                </v-col>
-               </v-row>
-
-               
-
-             </v-col>
-             <v-col sm="2" class="text-center vertical-btns">
-               <v-btn elevation="2">Audit</v-btn>
-               <v-btn elevation="2">Incpect</v-btn>
-               <v-btn elevation="2">Monitor</v-btn>
-             </v-col>
-          </v-row>
-
-
-          <v-row no-gutters>
-            <v-col sm="12" class="text-center">
-              <h2>Outflow</h2>
-              <div id="outflow" class="mt-3 py-3">
-                <div id="outflowTokens"></div>
-              </div>
-            </v-col>
-          </v-row>
-
-
-
-        </v-col>
-      </v-row>
-    </v-container>
-
-
- 
-
-  </v-container>
-</template>
+<style src="./style.css"></style>
+<template src="./template.html"></template>
 
 <script>
 
@@ -103,20 +10,13 @@ import Data from "/Users/ammaraldhahyani/Desktop/thesis-fado/fado/public/Custome
 export default {
   name: 'Home',
   data: () => ({
-    Tokens: [],
-    FilteredTokens: [],
-    filter: null,
-    activeBtn: false,
-    snackbar: false,
-    timeout: 2000,
-    toggle_exclusive: [],
-
-
+    layer2: [],
+    layer3: [],
+    layer4: [],
+    
   }),
  
   methods: {
-
-
 
     randomItem(items){
       return items[Math.floor(Math.random()*items.length)];
@@ -205,23 +105,58 @@ export default {
     },
     
 
-    generateToken(){
+    generateOutput(){
+      
       setInterval(()=>{
-        let newToken = this.generateTx()
-        let firstNum = 
-        this.Tokens.push(newToken)
-        this.printToken(newToken,'inflowTokens')
-        if(this.toggle_exclusive[0] == null){
-          this.printToken(newToken,'outflowTokens')
+        let newOutput = this.generateTx()
+        this.printOutput(newOutput,'inflowLayer1')
+        if(newOutput[0] == 1){
+          this.layer2.push(newOutput)
         }
-        else{
-          if(this.setFilter(newToken) == true){
-            this.printToken(newToken,'outflowTokens')
-          }
+        else if(newOutput[1] == 1){
+          this.layer3.push(newOutput)
+        }
+        else if(newOutput[2] == 1){
+          this.layer4.push(newOutput)
+        }
+        
+      }, 10)
+      
+    },
+
+    generateOutput2(){
+      let i = 0
+      setInterval(()=>{
+        if(this.layer2.length > i & this.layer2.length > 30){
+          this.printOutput(this.layer2[i],'outflowLayer2')
+          i++
         }
       }, 200)
     },
-    printToken(token, containerId){
+
+    generateOutput3(){
+      let i = 0
+      setInterval(()=>{
+        if(this.layer3.length > i & this.layer3.length > 30){
+          this.printOutput(this.layer3[i],'outflowLayer3')
+          i++
+        }
+      }, 400) 
+    },
+
+    generateOutput4(){
+      let i = 0
+      setInterval(()=>{
+        if(this.layer4.length > i & this.layer4.length > 30){
+          this.printOutput(this.layer4[i],'outflowLayer4')
+          i++
+        }
+      }, 800)
+    },
+
+
+
+    printOutput(token, containerId){
       let newTokenDiv = document.createElement('div')
       let nodeToken = document.createTextNode(token)
       newTokenDiv.appendChild(nodeToken)
@@ -230,98 +165,24 @@ export default {
     },
     
 
-    setFilter(oneToken){
-      
-      let sys = this.toggle_exclusive
-      let l = sys.length
-      for(let i = 0; i < l ; i++){
-        if(oneToken[sys[i]] != 1 & sys[i] != 6){
-          return false
-
-        }
-      }
-      return true
-    }
+   
 
   },
   mounted () {
     console.log(this.generateTx())
-    this.generateToken() 
-    console.log(this.setFilter())
+    
+    this.generateOutput()
+    this.generateOutput2()
+    this.generateOutput3()
+    this.generateOutput4()
+    
+    
+    console.log(this.layer2[1])
+    
+   
     
    
   }
 }
 </script>
 
-<style scoped>
-.navbar{
-  text-align: left;
-  background: #1b1c46;
-  padding-left: 30px;
-  height: 55px;
-}
-.navbar ul{
-  list-style: none;
-  margin:0;
-  padding:0;
-}
-.navbar ul li{
-  display: inline-block;
-}
-.navbar a{
-  display: inline-block;
-  padding: 1px 15px;
-  line-height: 55px;
-  text-decoration: none;
-  color:#fff;
-}
-#inflow,
-#outflow{
-  margin: auto 10px;
-  overflow-y: hidden;
-  border-radius: 10px;
-  color: #777;
-  background: #fff;
-  margin-bottom: 50px;
-}
-#inflow{
-  max-height: 765px;
-  height: 765px;
-}
-#outflow{
-  max-height: 300px;
-  height: 300px;
-  background: #fff;
-}
-.filters-buttons--holder{
-  overflow-x: scroll;
-  overflow-y: hidden;
-  width: 100%;
-  height: 80px;
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
-}
-.v-btn:not(.v-btn--round).v-size--default{
-  max-width: 100px;
-  height: 50px;
-  margin-right: 10px;
-  font-size: 12px;
-}
-
-.vertical-btns .v-btn{
-  display: inline-block;
-  margin-top: 15px;
-  width: 120px;
-}
-
-.filters{
-  margin-top: 48px;
-}
-.fado-filters{
-  min-height: 322px;
-  margin-bottom: 20px;
-}
-
-
-</style>

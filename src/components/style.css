@@ -1,0 +1,122 @@
+.navbar{
+    text-align: left;
+    background: #1b1c46;
+    padding-left: 30px;
+    height: 55px;
+  }
+  .navbar ul{
+    list-style: none;
+    margin:0;
+    padding:0;
+  }
+  .navbar ul li{
+    display: inline-block;
+  }
+  .navbar a{
+    display: inline-block;
+    padding: 1px 15px;
+    line-height: 55px;
+    text-decoration: none;
+    color:#fff !important;
+  }
+  #inflow,
+  #layer2,
+  #layer3,
+  #layer4{
+    margin: auto 10px;
+    overflow-y: hidden;
+    border-radius: 10px;
+    color: #777;
+    background: #fff;
+    margin-bottom: 50px;
+  }
+  #inflow{
+    max-height: 800px;
+    height: 800px;
+  }
+  
+  #layer2{
+    max-height: 478px;
+    height: 480px;
+    background: #fff;
+    font-size: 15px;
+  }
+  #layer3{
+    max-height: 440px;
+    height: 440px;
+    background: #fff;
+    font-size: 14px;
+  }
+  #layer4{
+    max-height: 401px;
+    height: 401px;
+    background: #fff;
+    font-size: 12px;
+  }
+  
+  
+  .v-btn:not(.v-btn--round).v-size--default{
+    max-width: 100px;
+    height: 50px;
+    margin-right: 10px;
+    font-size: 12px;
+  }
+  
+  .vertical-btns .v-btn{
+    display: inline-block;
+    margin-top: 15px;
+    width: 120px;
+  }
+  
+  
+  .layers{
+    min-height: 322px;
+    margin-bottom: 20px;
+  }
+  
+  .dot{
+    
+    margin-left: 0px;
+    margin-bottom: 0px;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+  }
+  .dot1{
+    width: 250px !important;
+    height: 250px  !important;
+    margin-left: 0px;
+    margin-bottom: 0px;
+    background-color: rgb(35, 42, 79);
+    
+  }
+  
+  .dot2{
+    width: 200px !important;
+    height: 200px  !important;
+    margin-left: 0px;
+    margin-bottom: 0px;
+    background-color: rgb(76, 90, 196);
+    margin-top: 25px;
+    
+  }
+  
+  .dot3{
+    width: 150px !important;
+    height: 150px  !important;
+    margin-left: 0px;
+    margin-bottom: 0px;
+    background-color: rgb(110, 113, 203);
+    margin-top: 25px;
+   
+  }
+  
+  .dot4{
+    width: 100px !important;
+    height: 100px  !important;
+    margin-left: 0px;
+    margin-bottom: 0px;
+    background-color: rgb(212, 211, 240);
+    margin-top: 25px;
+    
+  }

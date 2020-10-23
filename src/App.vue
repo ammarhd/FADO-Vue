@@ -52,10 +52,7 @@ main{
   background-color: rgb(59, 59, 206) !important;
   color: #fff !important;
 }
-.fab-btn{
-  width: 100px !important;
-  height: 100px  !important;
-  margin-left: 19px;
-  margin-bottom: 30px;
-}
+
+
+
 </style>

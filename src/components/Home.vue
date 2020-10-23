@@ -120,7 +120,7 @@ export default {
           }
         }
         
-      }, 10)
+      }, 1)
       
     },
 
@@ -131,7 +131,7 @@ export default {
           this.printOutput(this.layer2[i],'outflowLayer2')
           i++
         }
-      }, 100)
+      }, 200)
     },
 
     generateOutput3(){

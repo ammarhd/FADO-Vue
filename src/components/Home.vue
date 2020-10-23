@@ -112,12 +112,12 @@ export default {
         this.printOutput(newOutput,'inflowLayer1')
         if(newOutput[0] == 1){
           this.layer2.push(newOutput)
-        }
-        else if(newOutput[1] == 1){
-          this.layer3.push(newOutput)
-        }
-        else if(newOutput[2] == 1){
-          this.layer4.push(newOutput)
+          if(newOutput[1] == 1){
+            this.layer3.push(newOutput)
+            if(newOutput[2] == 1){
+              this.layer4.push(newOutput)
+            }
+          }
         }
         
       }, 10)
@@ -127,31 +127,31 @@ export default {
     generateOutput2(){
       let i = 0
       setInterval(()=>{
-        if(this.layer2.length > i & this.layer2.length > 30){
+        if(this.layer2.length > i ){
           this.printOutput(this.layer2[i],'outflowLayer2')
           i++
         }
-      }, 200)
+      }, 100)
     },
 
     generateOutput3(){
       let i = 0
       setInterval(()=>{
-        if(this.layer3.length > i & this.layer3.length > 30){
+        if(this.layer3.length > i ){
           this.printOutput(this.layer3[i],'outflowLayer3')
           i++
         }
-      }, 400) 
+      }, 300) 
     },
 
     generateOutput4(){
       let i = 0
       setInterval(()=>{
-        if(this.layer4.length > i & this.layer4.length > 30){
+        if(this.layer4.length > i ){
           this.printOutput(this.layer4[i],'outflowLayer4')
           i++
         }
-      }, 800)
+      }, 500)
     },
 
 

@@ -5,6 +5,8 @@
 
 <script>
 
+ 
+
 import Data from "/Users/ammaraldhahyani/Desktop/thesis-fado/fado/public/Customers.json";
 
 export default {
@@ -148,7 +150,7 @@ export default {
       let i = 0
       setInterval(()=>{
         if(this.layer4.length > i ){
-          this.printOutput(this.layer4[i],'outflowLayer4')
+          this.printOutput4(this.layer4[i],'outflowLayer4')
           i++
         }
       }, 500)
@@ -163,7 +165,61 @@ export default {
       let tokenContianer = document.getElementById(containerId)
       tokenContianer.insertBefore(newTokenDiv, tokenContianer.childNodes[0])
     },
-    
+
+    printOutput4(token, containerId){
+      let newTokenDiv = document.createElement('div')
+      let s = '?'
+      let line = token
+      let btn = document.createElement("button")
+      //btn.setAttribute('type', 'button')
+      btn.innerHTML = `<span id="normal">${s}</span>${token}`
+      btn.setAttribute('style','white-space: nowrap;')
+      //tn.setAttribute('value', s + token)
+      
+       
+      let menu = document.createElement('div')
+      menu.innerHTML = '<div>Ok</div>'
+      menu.innerHTML += '<div>F</div>'
+      menu.innerHTML += '<div>cancel</div>'
+      
+      menu.classList.add('popup-menu')
+      
+      newTokenDiv.appendChild(btn)
+      newTokenDiv.appendChild(menu)
+
+      btn.addEventListener('click', (e)=>{
+        let menus = document.getElementsByClassName('show-menu')
+        if(menus.length>0){
+          for(var i=0; i< menus.length;i++){
+            menus[i].classList.remove('show-menu')
+          }
+
+        }
+        
+      
+        menu.classList.toggle('show-menu')
+        //console.log(e.target)
+      })
+
+      menu.addEventListener('click', e=>{
+        let btnValue = e.target.innerHTML
+        if(btnValue == "cancel"){
+          menu.classList.remove('show-menu')
+          return
+        }
+        btn.innerHTML = `<span id="add${btnValue}">${btnValue}</span>${token}`
+        menu.classList.remove('show-menu')
+        //btn.setAttribute('value', e.target.innerHTML + token )
+      
+      })
+      
+      let tokenContianer = document.getElementById(containerId)
+      tokenContianer.insertBefore(newTokenDiv, tokenContianer.childNodes[0])
+    },
+   
+    myFunction3(token){
+      alert('aaaa')
+    }
 
    
 

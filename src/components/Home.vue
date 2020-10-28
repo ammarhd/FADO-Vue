@@ -12,7 +12,14 @@ export default {
     layer2: [],
     layer3: [],
     layer4: [],
-    
+    txsCount1: 0,
+    txsCount11: 0,
+    txsCount2: 0,
+    txsCount22: 0,
+    txsCount3: 0,
+    txsCount33: 0,
+    txsCount4: 0,
+    txsCount44: 0,
   }),
 
   methods: {
@@ -112,8 +119,8 @@ export default {
     generateOutput() {
       setInterval(() => {
         let newOutput = this.generateTx();
-
         this.printOutput(newOutput, "inflowLayer1");
+        this.txsCount1 += 1
         if (newOutput[0] == 1) {
           this.layer2.push(newOutput);
           if (newOutput[1] == 1) {
@@ -132,6 +139,7 @@ export default {
         if (this.layer2.length > i) {
           this.printOutput(this.layer2[i], "outflowLayer2");
           i++;
+          this.txsCount2 += 1
         }
       }, 200);
     },
@@ -142,6 +150,7 @@ export default {
         if (this.layer3.length > i) {
           this.printOutput(this.layer3[i], "outflowLayer3");
           i++;
+          this.txsCount3 += 1
         }
       }, 300);
     },
@@ -152,9 +161,31 @@ export default {
         if (this.layer4.length > i) {
           this.printOutput4(this.layer4[i], "outflowLayer4");
           i++;
+          this.txsCount4 += 1
         }
       }, 500);
     },
+
+    txsCount(){
+      setInterval(() => {
+        this.txsCount11 = this.txsCount1
+        this.txsCount1 = 0
+
+        this.txsCount22 = this.txsCount2
+        this.txsCount2 = 0
+
+        this.txsCount33 = this.txsCount3
+        this.txsCount3 = 0
+
+        this.txsCount44 = this.txsCount4
+        this.txsCount4 = 0
+
+      }, 1000);
+
+
+    },
+
+
 
     printOutput(token, containerId) {
       let newTokenDiv = document.createElement("div");
@@ -165,7 +196,6 @@ export default {
     },
 
     printOutput4(token, containerId) {
-
       var allInfo = [];
       var partInfo = [];
       var loadInfo = [];
@@ -177,8 +207,16 @@ export default {
           i++;
         }
         partInfo += token[i];
-        if(i == token.length-1){
-          allInfo.push(partInfo)
+        if (i == token.length - 1) {
+          allInfo.push(partInfo);
+        }
+      }
+
+      for (let i = 0; i < allInfo.length; i++) {
+        if ((allInfo[i] == 0) & (i != 5) & (i != 11)) {
+          allInfo[i] = "No";
+        } else if ((allInfo[i] == 1) & (i != 5) & (i != 11)) {
+          allInfo[i] = "Yes";
         }
       }
 
@@ -194,21 +232,26 @@ export default {
       let menu = document.createElement("div");
 
       let menu2 = document.createElement("div");
-      menu2.innerHTML = "Sender Id :"+ " " +allInfo[0]+ "<br/>";
-      menu2.innerHTML += "Reciever Id :"+ " " +allInfo[1]+ "<br/>";
-      menu2.innerHTML += "Amount :"+ " " +allInfo[2]+ "<br/>";
-      menu2.innerHTML += "Sender Country :"+ " " +allInfo[3]+ "<br/>";
-      menu2.innerHTML += "Sender Type Of Person:"+ " " +allInfo[4]+ "<br/>";
-      menu2.innerHTML += "Sender Age Group :"+ " " +allInfo[5]+ "<br/>";
-      menu2.innerHTML += "Sender Pep :"+ " " +allInfo[6]+ "<br/>";
-      menu2.innerHTML += "Sender Children :"+ " " +allInfo[7]+ "<br/>";
-      menu2.innerHTML += "Sender Employed :"+ " " +allInfo[8]+ "<br/>";
-      menu2.innerHTML += "Reciever Country :"+ " " +allInfo[9]+ "<br/>";
-      menu2.innerHTML += "Reciever Type Of Person :"+ " " +allInfo[10]+ "<br/>";
-      menu2.innerHTML += "Reciever Age Group :"+ " " +allInfo[11]+ "<br/>";
-      menu2.innerHTML += "Reciever Pep :"+ " " +allInfo[12]+ "<br/>";
-      menu2.innerHTML += "Reciever Children :"+ " " +allInfo[13]+ "<br/>";
-      menu2.innerHTML += "Reciever Employed :"+ " " +allInfo[14]+ "<br/>";
+      menu2.innerHTML = "Sender Id :" + " " + allInfo[0] + "<br/>";
+      menu2.innerHTML += "Reciever Id :" + " " + allInfo[1] + "<br/>";
+      menu2.innerHTML += "Amount :" + " " + allInfo[2] + "<br/>";
+      menu2.innerHTML += "Sender Country :" + " " + allInfo[3] + "<br/>";
+      menu2.innerHTML += "Sender Type Of Person:" + " " + allInfo[4] + "<br/>";
+      menu2.innerHTML += "Sender Age Group :" + " " + allInfo[5] + "<br/>";
+      menu2.innerHTML +=
+        "Is Sender Politically Exposed :" + " " + allInfo[6] + "<br/>";
+      menu2.innerHTML +=
+        "Does Sender has Children :" + " " + allInfo[7] + "<br/>";
+      menu2.innerHTML += "Is Sender Employed :" + " " + allInfo[8] + "<br/>";
+      menu2.innerHTML += "Reciever Country :" + " " + allInfo[9] + "<br/>";
+      menu2.innerHTML +=
+        "Reciever Type Of Person :" + " " + allInfo[10] + "<br/>";
+      menu2.innerHTML += "Reciever Age Group :" + " " + allInfo[11] + "<br/>";
+      menu2.innerHTML +=
+        "Is Reciever Politically Exposed :" + " " + allInfo[12] + "<br/>";
+      menu2.innerHTML +=
+        "Does Reciever has Children :" + " " + allInfo[13] + "<br/>";
+      menu2.innerHTML += "Is Reciever Employed :" + " " + allInfo[14] + "<br/>";
 
       let menu3 = document.createElement("div");
       menu3.innerHTML = "<div id='dx'>Ok</div>";
@@ -255,6 +298,7 @@ export default {
     this.generateOutput2();
     this.generateOutput3();
     this.generateOutput4();
+    this.txsCount();
     console.log(this.layer2[1]);
   },
 };

@@ -118,7 +118,7 @@ export default {
 
     generateOutput() {
       setInterval(() => {
-        for (var i = 0; i < 100; i++) {
+        for (var i = 0; i < 10; i++) {
           let newOutput = this.generateTx();
           this.printOutput(newOutput, "inflowLayer1");
           this.txsCount1 += 1;
@@ -138,7 +138,7 @@ export default {
     generateOutput2() {
       let i = 0;
       setInterval(() => {
-        for (var j = 0; j < 100; j++) {
+        for (var j = 0; j < 10; j++) {
           if (this.layer2.length > i) {
             this.printOutput(this.layer2[i], "outflowLayer2");
             i++;
@@ -151,7 +151,7 @@ export default {
     generateOutput3() {
       let i = 0;
       setInterval(() => {
-        for (var j = 0; j < 100; j++) {
+        for (var j = 0; j < 10; j++) {
           if (this.layer3.length > i) {
             this.printOutput(this.layer3[i], "outflowLayer3");
             i++;
@@ -225,7 +225,33 @@ export default {
       }
 
       for (let i = 0; i < allInfo.length; i++) {
-        if ((allInfo[i] == 0) & (i != 5) & (i != 11)) {
+        if (i == 5 || i == 11) {
+          if (allInfo[i] == 1) {
+            allInfo[i] = "15 - 24";
+          } else if (allInfo[i] == 2) {
+            allInfo[i] = "25 - 49";
+          } else if (allInfo[i] == 3) {
+            allInfo[i] = "50 - 64";
+          } else if (allInfo[i] == 4) {
+            allInfo[i] = "65 - 79";
+          } else if (allInfo[i] == 5) {
+            allInfo[i] = "80 - Above";
+          } else if (i == 5) {
+            if (allInfo[i] == 0) {
+              allInfo[5] = '-'
+              allInfo[6] = '-'
+              allInfo[7] = '-'
+              allInfo[8] = '-'
+            }
+          } else if (i == 11) {
+            if (allInfo[i] == 0) {
+              allInfo[11] = '-'
+              allInfo[12] = '-'
+              allInfo[13] = '-'
+              allInfo[14] = '-'
+            }
+          }
+        } else if ((allInfo[i] == 0) & (i != 5) & (i != 11)) {
           allInfo[i] = "No";
         } else if ((allInfo[i] == 1) & (i != 5) & (i != 11)) {
           allInfo[i] = "Yes";
@@ -344,7 +370,7 @@ export default {
         if (btnValue == "Cancel") {
           menu.classList.remove("show-menu");
           return;
-        }
+        } 
         btn.innerHTML = `<span id="add${btnValue}">${btnValue[0]}</span>${token}`;
         menu.classList.remove("show-menu");
         //btn.setAttribute('value', e.target.innerHTML + token )

@@ -174,13 +174,22 @@ export default {
         this.txsCount22 = this.txsCount2
         this.txsCount2 = 0
 
+
+      }, 1000);
+
+
+    },
+
+    txsCountMin(){
+      setInterval(() => {
+  
         this.txsCount33 = this.txsCount3
         this.txsCount3 = 0
 
         this.txsCount44 = this.txsCount4
         this.txsCount4 = 0
 
-      }, 1000);
+      }, 60000);
 
 
     },
@@ -230,37 +239,84 @@ export default {
       //tn.setAttribute('value', s + token)
 
       let menu = document.createElement("div");
+      let menu_t = document.createElement("div");
+
+      menu_t.innerHTML = "AMOUNT" + "&ensp;" + "&ensp;" + allInfo[2];
+
 
       let menu2 = document.createElement("div");
-      menu2.innerHTML = "Sender Id :" + " " + allInfo[0] + "<br/>";
-      menu2.innerHTML += "Reciever Id :" + " " + allInfo[1] + "<br/>";
-      menu2.innerHTML += "Amount :" + " " + allInfo[2] + "<br/>";
-      menu2.innerHTML += "Sender Country :" + " " + allInfo[3] + "<br/>";
-      menu2.innerHTML += "Sender Type Of Person:" + " " + allInfo[4] + "<br/>";
-      menu2.innerHTML += "Sender Age Group :" + " " + allInfo[5] + "<br/>";
-      menu2.innerHTML +=
-        "Is Sender Politically Exposed :" + " " + allInfo[6] + "<br/>";
-      menu2.innerHTML +=
-        "Does Sender has Children :" + " " + allInfo[7] + "<br/>";
-      menu2.innerHTML += "Is Sender Employed :" + " " + allInfo[8] + "<br/>";
-      menu2.innerHTML += "Reciever Country :" + " " + allInfo[9] + "<br/>";
-      menu2.innerHTML +=
-        "Reciever Type Of Person :" + " " + allInfo[10] + "<br/>";
-      menu2.innerHTML += "Reciever Age Group :" + " " + allInfo[11] + "<br/>";
-      menu2.innerHTML +=
-        "Is Reciever Politically Exposed :" + " " + allInfo[12] + "<br/>";
-      menu2.innerHTML +=
-        "Does Reciever has Children :" + " " + allInfo[13] + "<br/>";
-      menu2.innerHTML += "Is Reciever Employed :" + " " + allInfo[14] + "<br/>";
+      let menu2l = document.createElement("div");
+      let menu2r = document.createElement("div");
+
+      let menu2l_t = document.createElement("div");
+      let menu2l_b = document.createElement("div");
+
+      let menu2rl = document.createElement("div");
+      let menu2rl_t = document.createElement("div");
+      let menu2rl_b = document.createElement("div");
+
+      let menu2rr = document.createElement("div");
+      let menu2rr_t = document.createElement("div");
+      let menu2rr_b = document.createElement("div");
+
+      menu2l_t.innerHTML = "INFORMATION" + "<br/>";
+
+      menu2l_b.innerHTML = "ID" + "<br/>";
+      menu2l_b.innerHTML += "Country" + "<br/>";
+      menu2l_b.innerHTML += "Type Of Person" + "<br/>";
+      menu2l_b.innerHTML += "Age Group" + "<br/>";
+      menu2l_b.innerHTML += "Is Politically Exposed" + "<br/>";
+      menu2l_b.innerHTML += "Has Children" + "<br/>";
+      menu2l_b.innerHTML += "Is Employed" + "<br/>"
+
+      menu2rl_t.innerHTML = "SENDER" + "<br/>";
+      menu2rr_t.innerHTML = "RECIEVER" + "<br/>";
+      
+      menu2rl_b.innerHTML = allInfo[0] + "<br/>";
+      menu2rl_b.innerHTML += allInfo[3] + "<br/>";
+      menu2rl_b.innerHTML += allInfo[4] + "<br/>";
+      menu2rl_b.innerHTML += allInfo[5] + "<br/>";
+      menu2rl_b.innerHTML += allInfo[6] + "<br/>";
+      menu2rl_b.innerHTML += allInfo[7] + "<br/>";
+      menu2rl_b.innerHTML += allInfo[8] + "<br/>";
+      menu2rr_b.innerHTML += allInfo[1] + "<br/>";
+      menu2rr_b.innerHTML += allInfo[9] + "<br/>";
+      menu2rr_b.innerHTML += allInfo[10] + "<br/>";
+      menu2rr_b.innerHTML += allInfo[11] + "<br/>";
+      menu2rr_b.innerHTML += allInfo[12] + "<br/>";
+      menu2rr_b.innerHTML += allInfo[13] + "<br/>";
+      menu2rr_b.innerHTML += allInfo[14] + "<br/>";
 
       let menu3 = document.createElement("div");
       menu3.innerHTML = "<div id='dx'>Ok</div>";
       menu3.innerHTML += "<div>F</div>";
 
+      menu2rl_t.classList.add("topp");
+      menu2rr_t.classList.add("topp");
+      menu2l_t.classList.add("topp");
+
+      menu2rl.classList.add("rl-col");
+      menu2rr.classList.add("rr-col");
+      menu2l.classList.add("left-col");
+      menu2r.classList.add("right-col");
       menu2.classList.add("info-menu");
       menu3.classList.add("btn-menu");
+      menu_t.classList.add("amount");
       menu.classList.add("popup-menu");
 
+      menu2l.appendChild(menu2l_t);
+      menu2l.appendChild(menu2l_b);
+      menu2rl.appendChild(menu2rl_t);
+      menu2rl.appendChild(menu2rl_b);
+      menu2rr.appendChild(menu2rr_t);
+      menu2rr.appendChild(menu2rr_b);
+
+      menu2r.appendChild(menu2rl);
+      menu2r.appendChild(menu2rr);
+      menu2.appendChild(menu2l);
+      menu2.appendChild(menu2r);
+
+      menu.appendChild(menu_t);
       menu.appendChild(menu2);
       menu.appendChild(menu3);
       newTokenDiv.appendChild(btn);
@@ -299,6 +355,7 @@ export default {
     this.generateOutput3();
     this.generateOutput4();
     this.txsCount();
+    this.txsCountMin();
     console.log(this.layer2[1]);
   },
 };

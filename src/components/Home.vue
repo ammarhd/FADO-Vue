@@ -17,9 +17,9 @@ export default {
     txsCount2: 0,
     txsCount22: 0,
     txsCount3: 0,
-    txsCount33: 0,
+    txsCount33: 10,
     txsCount4: 0,
-    txsCount44: 0,
+    txsCount44: 60,
   }),
 
   methods: {
@@ -118,15 +118,17 @@ export default {
 
     generateOutput() {
       setInterval(() => {
-        let newOutput = this.generateTx();
-        this.printOutput(newOutput, "inflowLayer1");
-        this.txsCount1 += 1
-        if (newOutput[0] == 1) {
-          this.layer2.push(newOutput);
-          if (newOutput[1] == 1) {
-            this.layer3.push(newOutput);
-            if (newOutput[2] == 1) {
-              this.layer4.push(newOutput);
+        for (var i = 0; i < 100; i++) {
+          let newOutput = this.generateTx();
+          this.printOutput(newOutput, "inflowLayer1");
+          this.txsCount1 += 1;
+          if (newOutput[0] == 1) {
+            this.layer2.push(newOutput);
+            if (newOutput[1] == 1) {
+              this.layer3.push(newOutput);
+              if (newOutput[2] == 1) {
+                this.layer4.push(newOutput);
+              }
             }
           }
         }
@@ -136,10 +138,12 @@ export default {
     generateOutput2() {
       let i = 0;
       setInterval(() => {
-        if (this.layer2.length > i) {
-          this.printOutput(this.layer2[i], "outflowLayer2");
-          i++;
-          this.txsCount2 += 1
+        for (var j = 0; j < 100; j++) {
+          if (this.layer2.length > i) {
+            this.printOutput(this.layer2[i], "outflowLayer2");
+            i++;
+            this.txsCount2 += 1;
+          }
         }
       }, 200);
     },
@@ -147,10 +151,12 @@ export default {
     generateOutput3() {
       let i = 0;
       setInterval(() => {
-        if (this.layer3.length > i) {
-          this.printOutput(this.layer3[i], "outflowLayer3");
-          i++;
-          this.txsCount3 += 1
+        for (var j = 0; j < 100; j++) {
+          if (this.layer3.length > i) {
+            this.printOutput(this.layer3[i], "outflowLayer3");
+            i++;
+            this.txsCount3 += 1;
+          }
         }
       }, 300);
     },
@@ -158,43 +164,40 @@ export default {
     generateOutput4() {
       let i = 0;
       setInterval(() => {
-        if (this.layer4.length > i) {
-          this.printOutput4(this.layer4[i], "outflowLayer4");
-          i++;
-          this.txsCount4 += 1
+        for (var j = 0; j < 10; j++) {
+          if (this.layer4.length > i) {
+            this.printOutput4(this.layer4[i], "outflowLayer4");
+            i++;
+            this.txsCount4 += 1;
+          }
         }
-      }, 500);
-    },
-
-    txsCount(){
-      setInterval(() => {
-        this.txsCount11 = this.txsCount1
-        this.txsCount1 = 0
-
-        this.txsCount22 = this.txsCount2
-        this.txsCount2 = 0
-
-
       }, 1000);
-
-
     },
 
-    txsCountMin(){
+    txsCount() {
       setInterval(() => {
-  
-        this.txsCount33 = this.txsCount3
-        this.txsCount3 = 0
+        this.txsCount11 = this.txsCount1;
+        this.txsCount1 = 0;
 
-        this.txsCount44 = this.txsCount4
-        this.txsCount4 = 0
-
-      }, 60000);
-
-
+        this.txsCount22 = this.txsCount2;
+        this.txsCount2 = 0;
+      }, 1000);
     },
 
+    txsCountMin() {
+      setInterval(() => {
+        this.txsCount33 = this.txsCount3;
+        this.txsCount3 = 0;
+      }, 60000);
+    },
 
+    txsCountHour() {
+      setInterval(() => {
+        this.txsCount44 = this.txsCount4;
+        this.txsCount44 *= 30;
+        this.txsCount4 = 0;
+      }, 120000);
+    },
 
     printOutput(token, containerId) {
       let newTokenDiv = document.createElement("div");
@@ -243,7 +246,6 @@ export default {
 
       menu_t.innerHTML = "AMOUNT" + "&ensp;" + "&ensp;" + allInfo[2];
 
-
       let menu2 = document.createElement("div");
       let menu2l = document.createElement("div");
       let menu2r = document.createElement("div");
@@ -267,11 +269,11 @@ export default {
       menu2l_b.innerHTML += "Age Group" + "<br/>";
       menu2l_b.innerHTML += "Is Politically Exposed" + "<br/>";
       menu2l_b.innerHTML += "Has Children" + "<br/>";
-      menu2l_b.innerHTML += "Is Employed" + "<br/>"
+      menu2l_b.innerHTML += "Is Employed" + "<br/>";
 
       menu2rl_t.innerHTML = "SENDER" + "<br/>";
       menu2rr_t.innerHTML = "RECIEVER" + "<br/>";
-      
+
       menu2rl_b.innerHTML = allInfo[0] + "<br/>";
       menu2rl_b.innerHTML += allInfo[3] + "<br/>";
       menu2rl_b.innerHTML += allInfo[4] + "<br/>";
@@ -288,8 +290,11 @@ export default {
       menu2rr_b.innerHTML += allInfo[14] + "<br/>";
 
       let menu3 = document.createElement("div");
-      menu3.innerHTML = "<div id='dx'>Ok</div>";
-      menu3.innerHTML += "<div>F</div>";
+      menu3.innerHTML = "<div id='dx'>Normal</div>";
+      menu3.innerHTML += "<div>Fraud</div>";
+      menu3.innerHTML += "<div id='canc'>Cancel</div>";
+
+      menu2l_b.classList.add("lBot");
 
       menu2rl_t.classList.add("topp");
       menu2rr_t.classList.add("topp");
@@ -336,11 +341,11 @@ export default {
 
       menu3.addEventListener("click", (e) => {
         let btnValue = e.target.innerHTML;
-        if (btnValue == "cancel") {
+        if (btnValue == "Cancel") {
           menu.classList.remove("show-menu");
           return;
         }
-        btn.innerHTML = `<span id="add${btnValue}">${btnValue}</span>${token}`;
+        btn.innerHTML = `<span id="add${btnValue}">${btnValue[0]}</span>${token}`;
         menu.classList.remove("show-menu");
         //btn.setAttribute('value', e.target.innerHTML + token )
       });
@@ -356,6 +361,7 @@ export default {
     this.generateOutput4();
     this.txsCount();
     this.txsCountMin();
+    this.txsCountHour();
     console.log(this.layer2[1]);
   },
 };

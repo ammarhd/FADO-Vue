@@ -298,7 +298,7 @@ export default {
       menu2l_b.innerHTML += "Is Employed" + "<br/>";
 
       menu2rl_t.innerHTML = "SENDER" + "<br/>";
-      menu2rr_t.innerHTML = "RECIEVER" + "<br/>";
+      menu2rr_t.innerHTML = "RECEIVER" + "<br/>";
 
       menu2rl_b.innerHTML = allInfo[0] + "<br/>";
       menu2rl_b.innerHTML += allInfo[3] + "<br/>";

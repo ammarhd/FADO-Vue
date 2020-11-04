@@ -20,6 +20,28 @@ export default {
     txsCount33: 10,
     txsCount4: 0,
     txsCount44: 60,
+    allCountries: [
+      "DE",
+      "BE",
+      "AT",
+      "FR",
+      "EE",
+      "ES",
+      "IT",
+      "LT",
+      "NL",
+      "CZ",
+      "BG",
+      "EL",
+      "HR",
+      "CY",
+      "DK",
+      "IE",
+      "HU",
+      "LV",
+      "LU",
+      "MT",
+    ],
   }),
 
   methods: {
@@ -113,13 +135,57 @@ export default {
       let line =
         [sender, receiver, amount] + "," + senderInfo + "," + receiverInfo;
 
-      return line;
+      return [line, amount, senderInfo[0], receiverInfo[0]];
+    },
+
+    tx2vec() {
+      var allAtr = this.generateTx();
+      var txsLine = allAtr[0];
+      var sCountry = allAtr[2];
+      var rCountry = allAtr[3];
+      var amountt = Math.floor(allAtr[1]);
+      var amounttt = "";
+      var sVec = "";
+      var rVec = "";
+      var vector = 0;
+      if (amountt < 101) {
+        amounttt = "10000";
+      } else if ((amountt > 100) & (amountt < 1001)) {
+        amounttt = "01000";
+      } else if ((amountt > 1000) & (amountt < 10001)) {
+        amounttt = "00100";
+      } else if ((amountt > 10000) & (amountt < 100001)) {
+        amounttt = "00010";
+      } else if (amountt > 100000) {
+        amounttt = "00001";
+      }
+
+      for (let i = 0; i < 20; i++) {
+        if (sCountry == this.allCountries[i] || rCountry == this.allCountries[i]) {
+          if (sCountry == this.allCountries[i]) {
+            sVec += "1";
+          }
+          if (rCountry == this.allCountries[i]) {
+            rVec += "1";
+          }
+        }else{
+          sVec += "0";
+          rVec += "0";
+        }
+      }
+    
+      vector = sVec + rVec + amounttt;
+      console.log(txsLine);
+      console.log(vector);
+      console.log(vector.length);
+
+      return txsLine
     },
 
     generateOutput() {
       setInterval(() => {
         for (var i = 0; i < 10; i++) {
-          let newOutput = this.generateTx();
+          let newOutput = this.tx2vec();
           this.printOutput(newOutput, "inflowLayer1");
           this.txsCount1 += 1;
           if (newOutput[0] == 1) {
@@ -238,17 +304,17 @@ export default {
             allInfo[i] = "80 - Above";
           } else if (i == 5) {
             if (allInfo[i] == 0) {
-              allInfo[5] = '-'
-              allInfo[6] = '-'
-              allInfo[7] = '-'
-              allInfo[8] = '-'
+              allInfo[5] = "-";
+              allInfo[6] = "-";
+              allInfo[7] = "-";
+              allInfo[8] = "-";
             }
           } else if (i == 11) {
             if (allInfo[i] == 0) {
-              allInfo[11] = '-'
-              allInfo[12] = '-'
-              allInfo[13] = '-'
-              allInfo[14] = '-'
+              allInfo[11] = "-";
+              allInfo[12] = "-";
+              allInfo[13] = "-";
+              allInfo[14] = "-";
             }
           }
         } else if ((allInfo[i] == 0) & (i != 5) & (i != 11)) {
@@ -370,7 +436,7 @@ export default {
         if (btnValue == "Cancel") {
           menu.classList.remove("show-menu");
           return;
-        } 
+        }
         btn.innerHTML = `<span id="add${btnValue}">${btnValue[0]}</span>${token}`;
         menu.classList.remove("show-menu");
         //btn.setAttribute('value', e.target.innerHTML + token )
@@ -388,7 +454,8 @@ export default {
     this.txsCount();
     this.txsCountMin();
     this.txsCountHour();
-    console.log(this.layer2[1]);
+
+    this.tx2vec();
   },
 };
 </script>

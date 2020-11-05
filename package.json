@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "axios": "^0.20.0",
+    "compute-l2norm": "^1.1.0",
     "core-js": "^3.6.5",
     "csvtojson": "^2.0.10",
     "d3": "^6.2.0",

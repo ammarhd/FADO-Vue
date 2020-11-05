@@ -42,6 +42,9 @@ export default {
       "LU",
       "MT",
     ],
+    w: Array.from(Array(45), () => 0.0),
+    m_t: 0,
+    layer1tx: [],
   }),
 
   methods: {
@@ -144,57 +147,82 @@ export default {
       var sCountry = allAtr[2];
       var rCountry = allAtr[3];
       var amountt = Math.floor(allAtr[1]);
-      var amounttt = "";
-      var sVec = "";
-      var rVec = "";
-      var vector = 0;
-      if (amountt < 101) {
-        amounttt = "10000";
-      } else if ((amountt > 100) & (amountt < 1001)) {
-        amounttt = "01000";
-      } else if ((amountt > 1000) & (amountt < 10001)) {
-        amounttt = "00100";
-      } else if ((amountt > 10000) & (amountt < 100001)) {
-        amounttt = "00010";
-      } else if (amountt > 100000) {
-        amounttt = "00001";
-      }
+      var vector = Array.from(Array(45), () => 0);
+      var j = 20;
 
       for (let i = 0; i < 20; i++) {
-        if (sCountry == this.allCountries[i] || rCountry == this.allCountries[i]) {
-          if (sCountry == this.allCountries[i]) {
-            sVec += "1";
-          }
-          if (rCountry == this.allCountries[i]) {
-            rVec += "1";
-          }
-        }else{
-          sVec += "0";
-          rVec += "0";
+        if (sCountry == this.allCountries[i]) {
+          vector[i] = 1;
         }
+        if (rCountry == this.allCountries[i]) {
+          vector[j] = 1;
+        }
+        j++;
       }
-    
-      vector = sVec + rVec + amounttt;
-      console.log(txsLine);
-      console.log(vector);
-      console.log(vector.length);
 
-      return txsLine
+      if (amountt < 101) {
+        vector[40] = 1;
+      } else if ((amountt > 100) & (amountt < 1001)) {
+        vector[41] = 1;
+      } else if ((amountt > 1000) & (amountt < 10001)) {
+        vector[42] = 1;
+      } else if ((amountt > 10000) & (amountt < 100001)) {
+        vector[43] = 1;
+      } else if (amountt > 100000) {
+        vector[44] = 1;
+      }
+
+      return [txsLine, vector];
+    },
+
+    fado() {
+      var l2norm = require("compute-l2norm");
+      var allAtr = this.tx2vec();
+      var tx = allAtr[0];
+      var y_vec = allAtr[1];
+      var vecMinusW = [];
+      var v_t = [];
+      var gamma = 0;
+      var w_new = [];
+      
+
+      for (let i = 0; i < 45; i++) {
+        vecMinusW.push(y_vec[i] - this.w[i]);
+      }
+      var norm = l2norm(vecMinusW);
+      if (norm >= 1) {
+        this.m_t++;
+        gamma = 1 / Math.sqrt(this.m_t);
+        for (let i = 0; i < 45; i++) {
+          v_t.push(vecMinusW[i] / norm);
+          v_t[i] *= gamma;
+          w_new.push(this.w[i] + v_t[i]);
+        }
+
+        this.w = w_new;
+        this.layer1tx.push(tx);
+      }
+      
+     
+
+      console.log(vecMinusW);
+      console.log(norm);
+      console.log(this.w);
+      console.log(this.m_t);
+
+      return tx;
     },
 
     generateOutput() {
       setInterval(() => {
         for (var i = 0; i < 10; i++) {
-          let newOutput = this.tx2vec();
+          let newOutput = this.fado();
           this.printOutput(newOutput, "inflowLayer1");
           this.txsCount1 += 1;
-          if (newOutput[0] == 1) {
-            this.layer2.push(newOutput);
-            if (newOutput[1] == 1) {
-              this.layer3.push(newOutput);
-              if (newOutput[2] == 1) {
-                this.layer4.push(newOutput);
-              }
+          if (newOutput[1] == 1) {
+            this.layer3.push(newOutput);
+            if (newOutput[2] == 1) {
+              this.layer4.push(newOutput);
             }
           }
         }
@@ -204,14 +232,14 @@ export default {
     generateOutput2() {
       let i = 0;
       setInterval(() => {
-        for (var j = 0; j < 10; j++) {
-          if (this.layer2.length > i) {
-            this.printOutput(this.layer2[i], "outflowLayer2");
+        for (var j = 0; j < 5; j++) {
+          if (this.layer1tx.length > i + 5) {
+            this.printOutput(this.layer1tx[i], "outflowLayer2");
             i++;
             this.txsCount2 += 1;
           }
         }
-      }, 200);
+      }, 500);
     },
 
     generateOutput3() {
@@ -455,7 +483,7 @@ export default {
     this.txsCountMin();
     this.txsCountHour();
 
-    this.tx2vec();
+    this.fado();
   },
 };
 </script>

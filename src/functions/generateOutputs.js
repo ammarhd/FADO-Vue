@@ -1,4 +1,4 @@
-import {fado, layer1tx} from './fado.js'
+import {fado, layer1tx,layer2tx, layer3tx} from './fado.js'
 import {printOutput, printOutput4} from './printOutputs.js'
 var txsCount1 = 0;
 var txsCount2 = 0;
@@ -7,18 +7,15 @@ var txsCount4 = 0;
 var layer3 = [];
 var layer4 = [];
 var layer1Iteration = 0;
+var layer2Iteration = 0;
+var layer3Iteration = 0;
 
 
 const generateOutput = () => {
     let newOutput = fado();
     printOutput(newOutput, "inflowLayer1");
     txsCount1++;
-    if (newOutput[1] == 1) {
-        layer3.push(newOutput);
-        if (newOutput[2] == 1) {
-            layer4.push(newOutput);
-        }
-    }
+    
 };
 
 const generateOutput2 = () => {
@@ -30,29 +27,21 @@ const generateOutput2 = () => {
 };
 
 const generateOutput3 = () => {
-    let i = 0;
-    setInterval(() => {
-        for (var j = 0; j < 10; j++) {
-            if (layer3.length > i) {
-                printOutput(layer3[i], "outflowLayer3");
-                i++;
-                txsCount3++;
-            }
-        }
-    }, 300);
+    if (layer2Iteration < layer2tx.length) {
+        printOutput(layer2tx[layer2Iteration], "outflowLayer3");
+        layer2Iteration++;
+        txsCount3++;
+    }
+    
 };
 
 const generateOutput4 = () => {
-    let i = 0;
-    setInterval(() => {
-        for (var j = 0; j < 10; j++) {
-            if (layer4.length > i) {
-                printOutput4(layer4[i], "outflowLayer4");
-                i++;
-                txsCount4++;
-            }
-        }
-    }, 1000);
+    if (layer3Iteration < layer3tx.length) {
+        printOutput(layer3tx[layer3Iteration], "outflowLayer4");
+        layer3Iteration++;
+        txsCount4++;
+    }
+    
 };
 
 

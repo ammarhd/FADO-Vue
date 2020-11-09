@@ -35,6 +35,8 @@ export default {
         for (var j = 0; j < 100; j++) {
           generateOutput();
           generateOutput2();
+          generateOutput3();
+          generateOutput4();
         }
       }, 1);
     },
@@ -114,8 +116,7 @@ export default {
     this.counter3();
     this.counter4();
 
-    generateOutput3();
-    generateOutput4();
+  
   },
 };
 </script>

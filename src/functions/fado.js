@@ -2,6 +2,8 @@ import {tx2vec} from '../functions/tex2vec.js'
 var w = Array.from(Array(45), () => 0.0);
 var l0 = 0;
 var layer1tx = [];
+var layer2tx = [];
+var layer3tx = [];
 var m_t = 0;
 
 const fado = () => {
@@ -29,6 +31,12 @@ const fado = () => {
 
         w = w_new;
         layer1tx.push(tx);
+        if(tx[1] == 1){
+            layer2tx.push(tx)
+            if(tx[2] == 1){
+                layer3tx.push(tx)
+            }
+        }
     }
     l0++;
 
@@ -41,4 +49,4 @@ const fado = () => {
 
     return tx;
 };
-export{fado, layer1tx}
+export{fado, layer1tx,layer2tx, layer3tx}

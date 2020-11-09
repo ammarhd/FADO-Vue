@@ -4,18 +4,17 @@
 <template src="./template.html"></template>
 
 <script>
-import { fado, layer1tx } from "../functions/fado.js";
+import { fado } from "../functions/fado.js";
 import {
   generateOutput,
   generateOutput2,
   generateOutput3,
   generateOutput4,
-  counter1,
   txsCount1,
   txsCount2,
   txsCount3,
   txsCount4,
-  layer0count
+  
 } from "../functions/generateOutputs.js";
 
 
@@ -30,6 +29,8 @@ export default {
   }),
 
   methods: {
+
+    
     flowSpeed() {
       setInterval(() => {
         for (var j = 0; j < 100; j++) {
@@ -100,8 +101,10 @@ export default {
           this.layer3count = "Processed" + " " + count4 / 20 + " " + "TXs/sec";
         } else if (count4 > 10) {
           this.layer3count = "Processed" + " " + count4 * 3 + " " + "TXs/min";
-        } else {
+        } else if(count4 > 0) {
           this.layer3count = "Processed" + " " + count4 * 18 + " " + "TXs/hour";
+        }else {
+          this.layer3count = "Processed" + " " + 18 + " " + "TXs/3hours";
         }
       }, 20000);
     },

@@ -4,8 +4,7 @@ var txsCount1 = 0;
 var txsCount2 = 0;
 var txsCount3 = 0;
 var txsCount4 = 0;
-var layer3 = [];
-var layer4 = [];
+
 var layer1Iteration = 0;
 var layer2Iteration = 0;
 var layer3Iteration = 0;
@@ -37,7 +36,7 @@ const generateOutput3 = () => {
 
 const generateOutput4 = () => {
     if (layer3Iteration < layer3tx.length) {
-        printOutput(layer3tx[layer3Iteration], "outflowLayer4");
+        printOutput4(layer3tx[layer3Iteration], "outflowLayer4");
         layer3Iteration++;
         txsCount4++;
     }

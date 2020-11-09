@@ -21,10 +21,9 @@
       <v-row no-gutters>
         <v-col sm="12" md="4" class="text-center mt-5">
           <h2>Layer 0</h2>
-          <div id="txs">processed {{this.txsCount11}} TXs/sec</div>
+          <div id="txs">{{this.layer0count}}</div>
           <div id="inflow" class="mt-3 py-3">
-            <div id="inflowLayer1">
-            </div>
+            <div id="inflowLayer1"></div>
           </div>
         </v-col>
         <v-col sm="12" md="8">
@@ -45,7 +44,7 @@
           <v-row no-gutters>
             <v-col sm="12" md="5" class="text-center">
               <h2>Layer 1</h2>
-              <div id="txs">processed {{this.txsCount22}} TXs/sec</div>
+              <div id="txs">{{this.layer1count}}</div>
               <div id="layer2" class="mt-3 py-3">
                 <div id="outflowLayer2"></div>
               </div>
@@ -53,7 +52,7 @@
 
             <v-col sm="12" md="4" class="text-center mt-10">
               <h2>Layer 2</h2>
-              <div id="txs">processed {{this.txsCount33}} TXs/min</div>
+              <div id="txs">{{this.layer2count}}</div>
               <div id="layer3" class="mt-3 py-3">
                 <div id="outflowLayer3"></div>
               </div>
@@ -61,7 +60,7 @@
 
             <v-col sm="12" md="3" class="text-center mt-15 pt-5">
               <h2>Layer 3</h2>
-              <div id="txs">processed {{this.txsCount44}} TXs/hour</div>
+              <div id="txs">{{this.layer3count}}</div>
               <div id="layer4" class="mt-3 py-3">
                 <div  id="outflowLayer4">
                   

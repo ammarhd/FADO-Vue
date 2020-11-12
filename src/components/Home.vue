@@ -1,10 +1,13 @@
 
 
 <style src="./style.css"></style>
+<style src="./styleLayer0.css"></style>
 <template src="./template.html"></template>
 
 <script>
-import { fado } from "../functions/fado.js";
+
+import { fado, normArrayToDisplay } from "../functions/fado.js";
+import { popupLayer0 } from "../functions/layer0popup.js";
 import {
   generateOutput,
   generateOutput2,
@@ -14,23 +17,26 @@ import {
   txsCount2,
   txsCount3,
   txsCount4,
-  
 } from "../functions/generateOutputs.js";
+import layer0LineChart from "./Charts/layer0LineChart.vue";
+import layer0BarChart from "./Charts/layer0BarChart.vue";
 
 
 export default {
+  components: {
+    layer0BarChart,
+    layer0LineChart
+  },
+
   name: "Home",
   data: () => ({
-    layer0count: '',
-    layer1count: '',
-    layer2count: '',
-    layer3count: '',
-    
+    layer0count: "",
+    layer1count: "",
+    layer2count: "",
+    layer3count: "",
   }),
 
   methods: {
-
-    
     flowSpeed() {
       setInterval(() => {
         for (var j = 0; j < 100; j++) {
@@ -44,24 +50,23 @@ export default {
 
     counter1() {
       var count1 = 0;
-      var count11 = txsCount1/10;
+      var count11 = txsCount1 / 10;
       setInterval(() => {
         count1 = txsCount1 - count11;
         count11 = txsCount1;
         if (count1 > 140) {
-          this.layer0count = "Processed" + " " + count1/10  + " " + "TXs/sec";
+          this.layer0count = "Processed" + " " + count1 / 10 + " " + "TXs/sec";
         } else if (count1 > 10) {
           this.layer0count = "Processed" + " " + count1 * 6 + " " + "TXs/min";
         } else {
           this.layer0count = "Processed" + " " + count1 * 36 + " " + "TXs/hour";
         }
-      
       }, 10000);
     },
 
     counter2() {
       var count2 = 0;
-      var count22 = txsCount2/20;
+      var count22 = txsCount2 / 20;
       setInterval(() => {
         count2 = txsCount2 - count22;
         count22 = txsCount2;
@@ -77,9 +82,9 @@ export default {
 
     counter3() {
       var count3 = 0;
-      var count33 = txsCount3/20;
+      var count33 = txsCount3 / 20;
       setInterval(() => {
-        count3= txsCount3 - count33;
+        count3 = txsCount3 - count33;
         count33 = txsCount3;
         if (count3 > 140) {
           this.layer2count = "Processed" + " " + count3 / 20 + " " + "TXs/sec";
@@ -93,7 +98,7 @@ export default {
 
     counter4() {
       var count4 = 0;
-      var count44 = txsCount4/20;
+      var count44 = txsCount4 / 20;
       setInterval(() => {
         count4 = txsCount4 - count44;
         count44 = txsCount4;
@@ -101,14 +106,16 @@ export default {
           this.layer3count = "Processed" + " " + count4 / 20 + " " + "TXs/sec";
         } else if (count4 > 10) {
           this.layer3count = "Processed" + " " + count4 * 3 + " " + "TXs/min";
-        } else if(count4 > 0) {
+        } else if (count4 > 0) {
           this.layer3count = "Processed" + " " + count4 * 18 + " " + "TXs/hour";
-        }else {
+        } else {
           this.layer3count = "Processed" + " " + 18 + " " + "TXs/3hours";
         }
       }, 20000);
     },
-
+    getRandomInt() {
+      return Math.floor(Math.random() * (50 - 5 + 1)) + 5;
+    },
     
   },
 
@@ -118,8 +125,8 @@ export default {
     this.counter2();
     this.counter3();
     this.counter4();
-
-  
+    popupLayer0();
+    
   },
 };
 </script>

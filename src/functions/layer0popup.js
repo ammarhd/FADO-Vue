@@ -1,9 +1,12 @@
-const popupLayer0 = () => {
-    var modal = document.getElementById("layer0popup");
-    var btn = document.getElementById("layer0Btn");
-    var close = document.getElementById("clos");
+const popupLayer0 = (a, b, c) => {
+    var modal = document.getElementById(a);
+    var btn = document.getElementById(b);
+    var close = document.getElementById(c);
 
-    btn.onclick = function() {
+    btn.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
         modal.style.display = "block";
     };
     close.onclick = function() {

@@ -20,11 +20,24 @@
     <v-container>
         <v-row no-gutters>
             <v-col sm="12" md="4" class="text-center mt-5">
-                <button id="layer0Btn">Layer 0</button>
+
+                <button id="layer0Btn"><h2>Layer 0</h2></button>
                 <div class="popup0-menu" id="layer0popup">
-                    <layer0LineChart/>
+                    <div class="txNum">
+                        <div class="allTxNum">
+                            <div class="">Current transactions</div>
+                            <div class="">{{ this.allTxs }}</div>
+                        </div>
+                        <div class="fiterdTxNum">
+                            <div class="">Current filtered transactions</div>
+                            <div class="">{{ this.filteredTxs }}</div>
+                        </div>
+                    </div>
                     <layer0BarChart/>
+                    <layer0LineChart/>
                     <layer0TxChart/>
+
+
                     <div id="clos">Close</div>
 
                 </div>
@@ -51,7 +64,19 @@
 
                 <v-row no-gutters>
                     <v-col sm="12" md="5" class="text-center">
-                        <h2>Layer 1</h2>
+                        <button id="layer1Btn"><h2>Layer 1</h2></button>
+                        <div class="popup1-menu" id="layer1popup">
+                            <div class="txNum123">
+
+                                <div class="">Current transactions</div>
+                                <div class="">{{ this.layer1txs }}</div>
+
+
+                            </div>
+
+                            <div id="clos1">Close</div>
+
+                        </div>
                         <div id="txs">{{this.layer1count}}</div>
                         <div id="layer2" class="mt-3 py-3">
                             <div id="outflowLayer2"></div>
@@ -59,7 +84,19 @@
                     </v-col>
 
                     <v-col sm="12" md="4" class="text-center mt-10">
-                        <h2>Layer 2</h2>
+                        <button id="layer2Btn"><h2>Layer 2</h2></button>
+                        <div class="popup2-menu" id="layer2popup">
+                            <div class="txNum123">
+
+                                <div class="">Current transactions</div>
+                                <div class="">{{ this.layer2txs }}</div>
+
+
+                            </div>
+
+                            <div id="clos2">Close</div>
+
+                        </div>
                         <div id="txs">{{this.layer2count}}</div>
                         <div id="layer3" class="mt-3 py-3">
                             <div id="outflowLayer3"></div>
@@ -67,7 +104,19 @@
                     </v-col>
 
                     <v-col sm="12" md="3" class="text-center mt-15 pt-5">
-                        <h2>Layer 3</h2>
+                        <button id="layer3Btn"><h2>Layer 3</h2></button>
+                        <div class="popup3-menu" id="layer3popup">
+                            <div class="txNum123">
+
+                                <div class="">Current transactions</div>
+                                <div class="">{{ this.layer3txs }}</div>
+
+
+                            </div>
+
+                            <div id="clos3">Close</div>
+
+                        </div>
                         <div id="txs">{{this.layer3count}}</div>
                         <div id="layer4" class="mt-3 py-3">
                             <div id="outflowLayer4">

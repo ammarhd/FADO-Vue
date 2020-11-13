@@ -6,8 +6,9 @@
 
 <script>
 
-import { fado, normArrayToDisplay } from "../functions/fado.js";
+import { fado, normArrayToDisplay, l0, m_t, layer1count, layer2count, layer3count } from "../functions/fado.js";
 import { popupLayer0 } from "../functions/layer0popup.js";
+
 import {
   generateOutput,
   generateOutput2,
@@ -36,6 +37,11 @@ export default {
     layer1count: "",
     layer2count: "",
     layer3count: "",
+    filteredTxs: 0,
+    allTxs:0,
+    layer1txs: 0,
+    layer2txs: 0,
+    layer3txs: 0,
   }),
 
   methods: {
@@ -46,6 +52,11 @@ export default {
           generateOutput2();
           generateOutput3();
           generateOutput4();
+          this.allTxs = l0;
+          this.filteredTxs = m_t;
+          this.layer1txs = layer1count;
+          this.layer2txs = layer2count;
+          this.layer3txs = layer3count;
         }
       }, 1);
     },
@@ -127,7 +138,11 @@ export default {
     this.counter2();
     this.counter3();
     this.counter4();
-    popupLayer0();
+    popupLayer0("layer0popup","layer0Btn","clos");
+    popupLayer0("layer1popup","layer1Btn","clos1");
+    popupLayer0("layer2popup","layer2Btn","clos2");
+    popupLayer0("layer3popup","layer3Btn","clos3");
+    
     
   },
 };

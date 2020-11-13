@@ -12,6 +12,9 @@ var y_vec = [];
 var normArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var normArrayToDisplay = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var countNorm = 0;
+var layer1count = 0;
+var layer2count = 0;
+var layer3count = 0;
 
 
 
@@ -41,10 +44,13 @@ const fado = () => {
 
         w = w_new;
         layer1tx.push(tx);
+        layer1count++;
         if (tx[1] == 1) {
             layer2tx.push(tx)
+            layer2count++;
             if (tx[2] == 1) {
                 layer3tx.push(tx)
+                layer3count++;
             }
         }
     }
@@ -89,10 +95,11 @@ const fado = () => {
     console.log(l0);
     console.log(m_t / l0);
     */
+    console.log(y_vec);
 
 
     return tx;
 };
 
 
-export { fado, w, y_vec, l0, normArrayToDisplay, layer1tx, layer2tx, layer3tx }
+export { fado, w, y_vec, l0, m_t, normArrayToDisplay, layer1tx, layer2tx, layer3tx, layer1count, layer2count, layer3count }

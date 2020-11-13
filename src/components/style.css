@@ -1,6 +1,6 @@
 .navbar {
     text-align: left;
-    background: #1b1c46;
+    background: rgb(30, 40, 72);
     padding-left: 30px;
     height: 55px;
 }
@@ -36,26 +36,26 @@
 }
 
 #inflow {
-    max-height: 702px;
+    max-height: 682px;
     height: 800px;
 }
 
 #layer2 {
-    max-height: 380px;
+    max-height: 360px;
     height: 485px;
     background: #fff;
     font-size: 15px;
 }
 
 #layer3 {
-    max-height: 340px;
+    max-height: 320px;
     height: 440px;
     background: #fff;
     font-size: 14px;
 }
 
 #layer4 {
-    max-height: 301px;
+    max-height: 281px;
     height: 401px;
     background: #fff;
     font-size: 14px;

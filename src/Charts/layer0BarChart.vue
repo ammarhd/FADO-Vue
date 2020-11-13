@@ -1,16 +1,17 @@
 
 <template>
-  <div class="small2">
-    <Bar-chart :width="500" :height="200" :chart-data="datacollection" :options="chartOptions"></Bar-chart>
+  <div class="small2" id="lineC">
+    <Bar-chart
+      :options="chartOptions"
+      :height="100"
+      :chart-data="datacollection"
+    ></Bar-chart>
   </div>
 </template>
 
 <script>
 import BarChart from "../function-charts/BarChart.js";
-import {
-  fado,
-  normArrayToDisplay,
-} from "../functions/fado.js";
+import { fado, m_t, normArrayToDisplay } from "../functions/fado.js";
 
 export default {
   name: "layer0BarChart",
@@ -47,14 +48,12 @@ export default {
                 autoSkip: false,
                 max: 3,
               },
+              gridLines: {
+                display: true,
+              },
             },
           ],
         },
-        legend: {
-          display: true,
-        },
-        responsive: true,
-        maintainAspectRatio: false,
       },
     };
   },
@@ -80,25 +79,37 @@ export default {
           ],
           datasets: [
             {
-              label: "Norm",
-              backgroundColor: "#f87979",
-              pointBackgroundColor: "white",
+              label: "Norm of the last 100 TXs",
+              backgroundColor: "rgb(156, 191, 244)",
+              borderColor:"rgb(10, 41, 87)",
+              pointBackgroundColor: "rgb(132, 180, 252)",
               borderWidth: 1,
-              pointBorderColor: "#249EBF",
-              barPercentage: 1.2,
+              pointBorderColor: "rgb(132, 180, 252)",
+              barPercentage: 1.248,
 
               // Data for the x-axis of the chart
               data: [
+                
                 normArrayToDisplay[0],
+                
                 normArrayToDisplay[1],
+                
                 normArrayToDisplay[2],
+                
                 normArrayToDisplay[3],
+                
                 normArrayToDisplay[4],
+                
                 normArrayToDisplay[5],
+                
                 normArrayToDisplay[6],
+                
                 normArrayToDisplay[7],
+                
                 normArrayToDisplay[8],
+                
                 normArrayToDisplay[9],
+                
                 normArrayToDisplay[10],
               ],
             },
@@ -114,5 +125,7 @@ export default {
 </script>
 
 <style>
-
+.small2 {
+  padding: 10px;
+}
 </style>

@@ -1,7 +1,7 @@
 
 <template>
-  <div class="small">
-    <Line-chart :width="500" :height="100" :chart-data="datacollection2"></Line-chart>
+  <div class="small" id="lineC">
+    <Line-chart :height="100" :chart-data="datacollection2"></Line-chart>
   </div>
 </template>
 
@@ -74,8 +74,10 @@ export default {
           ],
           datasets: [
             {
-              label: "Norm",
-              backgroundColor: "#f87979",
+              label: "Current values of W",
+              backgroundColor: "rgb(168, 233, 240)",
+              borderColor:"rgb(12, 70, 77)",
+              borderWidth:1,
               // Data for the x-axis of the chart
               data: [
                 w[0],
@@ -138,5 +140,6 @@ export default {
 </script>
 
 <style>
+
 
 </style>

@@ -6,6 +6,8 @@ var layer2tx = [];
 var layer3tx = [];
 var m_t = 0;
 var norm = 0;
+var y_vec = [];
+
 
 var normArray = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 var normArrayToDisplay = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -18,7 +20,7 @@ const fado = () => {
     var l2norm = require("compute-l2norm");
     var allAtr = tx2vec();
     var tx = allAtr[0];
-    var y_vec = allAtr[1];
+    y_vec = allAtr[1];
     var vecMinusW = [];
     var v_t = [];
     var gamma = 0;
@@ -78,6 +80,7 @@ const fado = () => {
         countNorm = 0;
     }
 
+
     /*
     console.log(vecMinusW);
     console.log(w);
@@ -92,4 +95,4 @@ const fado = () => {
 };
 
 
-export { fado, w, normArrayToDisplay, layer1tx, layer2tx, layer3tx }
+export { fado, w, y_vec, l0, normArrayToDisplay, layer1tx, layer2tx, layer3tx }

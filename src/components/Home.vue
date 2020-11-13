@@ -18,14 +18,16 @@ import {
   txsCount3,
   txsCount4,
 } from "../functions/generateOutputs.js";
-import layer0LineChart from "./Charts/layer0LineChart.vue";
-import layer0BarChart from "./Charts/layer0BarChart.vue";
+import layer0LineChart from "../Charts/layer0LineChart.vue";
+import layer0BarChart from "../Charts/layer0BarChart.vue";
+import layer0TxChart from "../Charts/layer0TxChart.vue";
 
 
 export default {
   components: {
     layer0BarChart,
-    layer0LineChart
+    layer0LineChart,
+    layer0TxChart,
   },
 
   name: "Home",

@@ -1,13 +1,13 @@
 
 <template>
   <div class="small">
-    <Line-chart :chart-data="datacollection2"></Line-chart>
+    <Line-chart :width="500" :height="100" :chart-data="datacollection2"></Line-chart>
   </div>
 </template>
 
 <script>
-import LineChart from "/Users/ammaraldhahyani/Desktop/thesis-fado/fado/src/function-charts/LineChart.js";
-import { w } from "/Users/ammaraldhahyani/Desktop/thesis-fado/fado/src/functions/fado.js";
+import LineChart from "../function-charts/LineChart.js";
+import { w } from "../functions/fado.js";
 
 export default {
   name: "layer0LineChart",
@@ -138,7 +138,5 @@ export default {
 </script>
 
 <style>
-.small {
-  max-width: 300px;
-}
+
 </style>

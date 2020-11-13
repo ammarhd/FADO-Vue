@@ -1,16 +1,16 @@
 
 <template>
   <div class="small2">
-    <Bar-chart :chart-data="datacollection" :options="chartOptions"></Bar-chart>
+    <Bar-chart :width="500" :height="200" :chart-data="datacollection" :options="chartOptions"></Bar-chart>
   </div>
 </template>
 
 <script>
-import BarChart from "/Users/ammaraldhahyani/Desktop/thesis-fado/fado/src/function-charts/BarChart.vue";
+import BarChart from "../function-charts/BarChart.js";
 import {
   fado,
   normArrayToDisplay,
-} from "/Users/ammaraldhahyani/Desktop/thesis-fado/fado/src/functions/fado.js";
+} from "../functions/fado.js";
 
 export default {
   name: "layer0BarChart",
@@ -114,7 +114,5 @@ export default {
 </script>
 
 <style>
-.small2 {
-  max-width: 300px;
-}
+
 </style>

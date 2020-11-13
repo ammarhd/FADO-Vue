@@ -6,11 +6,11 @@ export default {
     mixins: [reactiveProp],
     props: ["options"],
     watch: {
-        chartData: {
-            handler: function() {
-
-                this.$data._chart.update();
-            },
+        'chartOptions': {
+            handler: function(newChartOptions) {
+                this.$data._chart.destroy()
+                this.renderChart(this.chartData, newChartOptions)
+            }
         }
     },
 

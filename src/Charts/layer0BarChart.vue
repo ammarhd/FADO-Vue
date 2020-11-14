@@ -12,6 +12,7 @@
 <script>
 import BarChart from "../function-charts/BarChart.js";
 import { fado, m_t, normArrayToDisplay } from "../functions/fado.js";
+import "chartjs-plugin-annotation";
 
 export default {
   name: "layer0BarChart",
@@ -22,7 +23,6 @@ export default {
     return {
       datacollection: {},
       chartOptions: {
-        
         scales: {
           yAxes: [
             {
@@ -37,7 +37,7 @@ export default {
           xAxes: [
             {
               display: false,
-              
+
               ticks: {
                 max: 1.66,
               },
@@ -50,6 +50,8 @@ export default {
               },
               gridLines: {
                 display: true,
+                color: ["wite","white","white","white","white","white","white","white","white","red","white","white"],
+                borderDash:[15,3,3,3],
               },
             },
           ],
@@ -80,36 +82,35 @@ export default {
           datasets: [
             {
               label: "Norm of the last 100 TXs",
-              backgroundColor: "rgb(156, 191, 244)",
-              borderColor:"rgb(10, 41, 87)",
+              backgroundColor:["rgba(118, 190, 254, 0.529)","rgba(118, 190, 254, 0.529)","rgba(118, 190, 254, 0.529)","rgba(118, 190, 254, 0.529)","rgba(118, 190, 254, 0.529)","rgba(118, 190, 254, 0.529)","rgba(118, 190, 254, 0.529)","rgba(118, 190, 254, 0.529)","rgba(118, 190, 254, 0.529)","rgba(247, 123, 123, 0.632)","rgba(247, 123, 123, 0.632)"],
+              borderColor: "rgb(10, 41, 87)",
               pointBackgroundColor: "rgb(132, 180, 252)",
-              borderWidth: 1,
+              borderWidth: 0,
               pointBorderColor: "rgb(132, 180, 252)",
-              barPercentage: 1.248,
+              barPercentage: 1.22,
 
               // Data for the x-axis of the chart
               data: [
-                
                 normArrayToDisplay[0],
-                
+
                 normArrayToDisplay[1],
-                
+
                 normArrayToDisplay[2],
-                
+
                 normArrayToDisplay[3],
-                
+
                 normArrayToDisplay[4],
-                
+
                 normArrayToDisplay[5],
-                
+
                 normArrayToDisplay[6],
-                
+
                 normArrayToDisplay[7],
-                
+
                 normArrayToDisplay[8],
-                
+
                 normArrayToDisplay[9],
-                
+
                 normArrayToDisplay[10],
               ],
             },

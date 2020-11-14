@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.20.0",
     "chart.js": "^2.9.4",
+    "chartjs-plugin-annotation": "^0.5.7",
     "compute-l2norm": "^1.1.0",
     "core-js": "^3.6.5",
     "csvtojson": "^2.0.10",

@@ -4,9 +4,6 @@ const popupLayer0 = (a, b, c) => {
     var close = document.getElementById(c);
 
     btn.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
         modal.style.display = "block";
     };
     close.onclick = function() {

@@ -1,13 +1,17 @@
 
 <template>
   <div class="small" id="lineC">
-    <Line-chart :height="100" :chart-data="datacollection2"></Line-chart>
+    <Line-chart
+      :options="chartOptions"
+      :height="100"
+      :chart-data="datacollection2"
+    ></Line-chart>
   </div>
 </template>
 
 <script>
 import LineChart from "../function-charts/LineChart.js";
-import { w } from "../functions/fado.js";
+import { w } from "../functions/FaDO.js";
 
 export default {
   name: "layer0LineChart",
@@ -17,6 +21,32 @@ export default {
   data() {
     return {
       datacollection2: {},
+      chartOptions: {
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+                steps: 10,
+                stepValue: 5,
+                max: 0.4,
+              },
+              gridLines: {
+                display: true,
+              },
+            },
+          ],
+          xAxes: [
+            {
+              display: true,
+              
+              gridLines: {
+                display: true,
+              },
+            },
+          ],
+        },
+      },
     };
   },
 
@@ -76,8 +106,8 @@ export default {
             {
               label: "Current values of W",
               backgroundColor: "rgb(168, 233, 240)",
-              borderColor:"rgb(12, 70, 77)",
-              borderWidth:1,
+              borderColor: "rgb(12, 70, 77)",
+              borderWidth: 1,
               // Data for the x-axis of the chart
               data: [
                 w[0],
@@ -128,7 +158,6 @@ export default {
               ],
             },
           ],
-          
         };
       }, 1000);
     },
@@ -140,6 +169,4 @@ export default {
 </script>
 
 <style>
-
-
 </style>

@@ -2,7 +2,7 @@
 <template>
   <div class="small3" id="lineC">
     <txBar-chart
-      
+      :options="chartOptions"
       :height="100"
       :chart-data="datacollection"
     ></txBar-chart>
@@ -11,7 +11,7 @@
 
 <script>
 import txBarChart from "../function-charts/txBarChart.js";
-import { y_vec, l0, m_t } from "../functions/fado.js";
+import { y_vec, l0, m_t } from "../functions/FaDO.js";
 
 export default {
   name: "layer0TxChart",
@@ -22,6 +22,32 @@ export default {
     return {
       datacollection: {},
       txArray: Array.from(Array(45), () => 0.0),
+      chartOptions: {
+        scales: {
+          yAxes: [
+            {
+              ticks: {
+                beginAtZero: true,
+                steps: 10,
+                stepValue: 5,
+                max: 0.006,
+              },
+              gridLines: {
+                display: true,
+              },
+            },
+          ],
+          xAxes: [
+            {
+              display: true,
+              
+              gridLines: {
+                display: true,
+              },
+            },
+          ],
+        },
+      },
     };
   },
 
@@ -82,9 +108,9 @@ export default {
           ],
           datasets: [
             {
-              label: "The avrage TXs",
+              label: "The average TX",
               backgroundColor: "rgb(244, 142, 223)",
-              borderColor:"rgb(38, 2, 31)",
+              borderColor: "rgb(38, 2, 31)",
               pointBackgroundColor: "rgb(75, 7, 62)",
               borderWidth: 1,
               pointBorderColor: "rgb(75, 7, 62)",
@@ -150,5 +176,4 @@ export default {
 </script>
 
 <style>
-
 </style>

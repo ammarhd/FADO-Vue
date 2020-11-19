@@ -1,4 +1,7 @@
-
+import { fadoN } from "./FaDO.js";
+var normalTX = [];
+var normalVec = [];
+var fraudTX = [];
 const printOutput = (token, containerId) => {
     let newTokenDiv = document.createElement("div");
     let nodeToken = document.createTextNode(token);
@@ -7,7 +10,7 @@ const printOutput = (token, containerId) => {
     tokenContianer.insertBefore(newTokenDiv, tokenContianer.childNodes[0]);
 };
 
-const printOutput4 = (token, containerId) => {
+const printOutput4 = (token, token_vec, containerId) => {
     var allInfo = [];
     var partInfo = [];
     var loadInfo = [];
@@ -170,9 +173,18 @@ const printOutput4 = (token, containerId) => {
         if (btnValue == "Cancel") {
             menu.classList.remove("show-menu");
             return;
+        } else if (btnValue == "Normal") {
+            btn.innerHTML = `<span id="add${btnValue}">${btnValue[0]}</span>${token}`;
+            normalTX = token;
+            normalVec = token_vec;
+            fadoN(normalVec);
+            menu.classList.remove("show-menu");
+        } else if (btnValue == "Fraud") {
+            btn.innerHTML = `<span id="add${btnValue}">${btnValue[0]}</span>${token}`;
+            fraudTX = token;
+            menu.classList.remove("show-menu");
         }
-        btn.innerHTML = `<span id="add${btnValue}">${btnValue[0]}</span>${token}`;
-        menu.classList.remove("show-menu");
+
         //btn.setAttribute('value', e.target.innerHTML + token )
     });
 
@@ -180,4 +192,4 @@ const printOutput4 = (token, containerId) => {
     tokenContianer.insertBefore(newTokenDiv, tokenContianer.childNodes[0]);
 };
 
-export{printOutput, printOutput4};
+export { printOutput, printOutput4 };

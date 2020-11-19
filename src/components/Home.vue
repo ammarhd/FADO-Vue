@@ -5,8 +5,15 @@
 <template src="./template.html"></template>
 
 <script>
-
-import { fado, normArrayToDisplay, l0, m_t, layer1count, layer2count, layer3count } from "../functions/fado.js";
+import {
+  fado,
+  normArrayToDisplay,
+  l0,
+  m_t,
+  layer1count,
+  layer2count,
+  layer3count,
+} from "../functions/FaDO.js";
 import { popupLayer0 } from "../functions/layer0popup.js";
 
 import {
@@ -23,7 +30,6 @@ import layer0LineChart from "../Charts/layer0LineChart.vue";
 import layer0BarChart from "../Charts/layer0BarChart.vue";
 import layer0TxChart from "../Charts/layer0TxChart.vue";
 
-
 export default {
   components: {
     layer0BarChart,
@@ -38,7 +44,7 @@ export default {
     layer2count: "",
     layer3count: "",
     filteredTxs: 0,
-    allTxs:0,
+    allTxs: 0,
     layer1txs: 0,
     layer2txs: 0,
     layer3txs: 0,
@@ -51,7 +57,7 @@ export default {
           generateOutput();
           generateOutput2();
           generateOutput3();
-          generateOutput4();
+         
           this.allTxs = l0;
           this.filteredTxs = m_t;
           this.layer1txs = layer1count;
@@ -59,6 +65,11 @@ export default {
           this.layer3txs = layer3count;
         }
       }, 1);
+    },
+    flowSpeed3() {
+      setInterval(() => {
+        generateOutput4();
+      }, 5000);
     },
 
     counter1() {
@@ -126,24 +137,19 @@ export default {
         }
       }, 20000);
     },
-    getRandomInt() {
-      return Math.floor(Math.random() * (50 - 5 + 1)) + 5;
-    },
-    
   },
 
   mounted() {
     this.flowSpeed();
+    this.flowSpeed3();
     this.counter1();
     this.counter2();
     this.counter3();
     this.counter4();
-    popupLayer0("layer0popup","layer0Btn","clos");
-    popupLayer0("layer1popup","layer1Btn","clos1");
-    popupLayer0("layer2popup","layer2Btn","clos2");
-    popupLayer0("layer3popup","layer3Btn","clos3");
-    
-    
+    popupLayer0("layer0popup", "layer0Btn", "clos");
+    popupLayer0("layer1popup", "layer1Btn", "clos1");
+    popupLayer0("layer2popup", "layer2Btn", "clos2");
+    popupLayer0("layer3popup", "layer3Btn", "clos3");
   },
 };
 </script>
